@@ -1,7 +1,19 @@
 import PropTypes from 'prop-types';
 import css from './Search.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { chengeFilter } from 'redux/actions';
 
-export default function Search({ onClick, searchName }) {
+export default function Search() {
+
+const {filter}=useSelector(state=>state.filter)
+const dispatch=useDispatch();
+
+const onChenge=(e)=>{
+  const { value } = e.target;
+  dispatch(chengeFilter(value));
+}
+
+
   return (
     <div className={css.decor_search}>
       <label className={css.lable} htmlFor="search">
@@ -12,8 +24,8 @@ export default function Search({ onClick, searchName }) {
         type="text"
         id="search"
         name="name"
-        onChange={onClick}
-        value={searchName}
+        onChange={onChenge}
+        value={filter}
       />
     </div>
   );

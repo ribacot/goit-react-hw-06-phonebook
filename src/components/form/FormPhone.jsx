@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 import css from './FormFone.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from 'redux/actions';
 
-export const FormPhone = ({ contacts, onSubmit }) => {
+export const FormPhone = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
+  const { contacts } = useSelector(state => state.contacts);
+  const dispatch = useDispatch();
+
   const hendleChange = e => {
     const { name, value } = e.target;
+
     const switchInput = name => {
       switch (name) {
         case 'name':
@@ -30,7 +35,7 @@ export const FormPhone = ({ contacts, onSubmit }) => {
 
   const formSubmit = e => {
     e.preventDefault();
-    onSubmit({ name, number });
+    dispatch(addContact({name,number}));
     setName('');
     setNumber('');
   };
@@ -75,9 +80,3 @@ export const FormPhone = ({ contacts, onSubmit }) => {
     </form>
   );
 };
-
-FormPhone.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  contacts: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)).isRequired,
-};
-
