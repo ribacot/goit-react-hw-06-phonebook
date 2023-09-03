@@ -1,8 +1,7 @@
 import { useState } from 'react';
-
-import css from './FormFone.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/actions';
+import css from './FormFone.module.css';
+import { addContact } from 'redux/contacts/contactsSlice';
 
 export const FormPhone = () => {
   const [name, setName] = useState('');
@@ -35,11 +34,11 @@ export const FormPhone = () => {
 
   const formSubmit = e => {
     e.preventDefault();
-    dispatch(addContact({name,number}));
+    dispatch(addContact({ name, number }));
     setName('');
     setNumber('');
   };
-
+  console.log(contacts);
   return (
     <form className={css.form_Add_Contact} onSubmit={formSubmit}>
       <div className={css.decor_input}>

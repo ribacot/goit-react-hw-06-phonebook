@@ -5,16 +5,15 @@ import { IconContext } from 'react-icons';
 import DeleteAll from 'components/deleteAll/DeleteAll';
 import css from './ContactsList.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { delAll, deleteContact } from 'redux/actions';
+import { delAll, deleteContact } from 'redux/contacts/contactsSlice';
 
 export const ContactsList = () => {
   const [checked, setChecked] = useState(false);
 
   const { contacts } = useSelector(state => state.contacts);
-  const {  filter } = useSelector(state => state.filter);
+  const { filter } = useSelector(state => state.filter);
 
   const dispatch = useDispatch();
-
 
   const getFilteredContacts = () => {
     return contacts.filter(({ name }) => name.toLowerCase().includes(filter));
