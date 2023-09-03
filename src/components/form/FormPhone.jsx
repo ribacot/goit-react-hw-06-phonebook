@@ -38,7 +38,6 @@ export const FormPhone = () => {
     setName('');
     setNumber('');
   };
-  console.log(contacts);
   return (
     <form className={css.form_Add_Contact} onSubmit={formSubmit}>
       <div className={css.decor_input}>
